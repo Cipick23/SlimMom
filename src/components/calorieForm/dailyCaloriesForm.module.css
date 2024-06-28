@@ -1,0 +1,113 @@
+@import './../../utils/shared.module.css';
+
+.submitButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+/* DailyCaloriesForm.module.css */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.calorieTitle {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inputGroup {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.vectorInput {
+  display: none; /* Placeholder for vector input styles */
+}
+
+.bloodTypeGroup {
+  width: 100%;
+}
+
+.inputRadio {
+  margin-bottom: 10px;
+}
+
+.radioGroup {
+  display: flex;
+  justify-content: space-around;
+}
+
+.customRadio {
+  margin-left: 5px;
+}
+
+.submitButtonContainer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .formContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .form {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .inputGroup {
+    width: 45%;
+  }
+
+  .bloodTypeGroup {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .formContainer {
+    max-width: 800px;
+  }
+
+  .form {
+    width: 70%;
+  }
+
+  .inputGroup {
+    width: 30%;
+  }
+
+  .bloodTypeGroup {
+    width: 60%;
+  }
+}

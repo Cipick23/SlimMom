@@ -1,0 +1,13 @@
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.userName {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  color: #212121;
+}

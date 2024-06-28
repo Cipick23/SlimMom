@@ -1,0 +1,102 @@
+/* Stiluri pentru ecrane mici (mobile first) */
+.layoutHeader {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 44px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.linkLogo {
+  display: inline-block;
+  width: 46px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.linkRegistration {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #9b9faa;
+  cursor: pointer;
+}
+
+.linkLogin {
+  display: inline-block;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: right;
+  color: #9b9faa;
+  text-decoration: none;
+  padding: 12px;
+  width: 60px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.linkRegistration.active,
+.linkLogin.active {
+  color: #e84a5f;
+}
+
+.vector8 {
+  background: url(./../../images/Vector8.png) no-repeat center center;
+  background-size: cover;
+  width: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vector {
+  background: url(./../../images/Vector1.png) no-repeat center center;
+  background-size: cover;
+  display: none;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .layoutHeader {
+    height: auto;
+  }
+
+  .vector8 {
+    width: 768px;
+  }
+
+  .vector {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .vector {
+    display: block;
+  }
+
+  .vector8 {
+    stroke-width: 2px;
+    stroke: #e0e0e0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .vector {
+    display: none;
+  }
+
+  .vector8 {
+    display: block;
+  }
+}
