@@ -1,32 +1,50 @@
 // DailyCaloriesForm.js
 import React, { useState } from 'react';
 import Modal from '../modal/modal.js';
-import { useNavigate } from 'react-router-dom';
-import sharedStyles from './../../utils/shared.module.css';
-import { useAuth } from 'router/authContext';
+// import { useNavigate } from 'react-router-dom';
+// import sharedStyles from './../../utils/shared.module.css';
+// import { useAuth } from 'router/authContext';
 import styles from './dailyCaloriesForm.module.css';
 
 const DailyCaloriesForm = () => {
+  const [height, setHeight] = useState('');
+  const [age, setAge] = useState('');
+  const [currentWeight, setCurrentWeight] = useState('');
+  const [desiredWeight, setDesiredWeight] = useState('');
+  const [bloodType, setBloodType] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
+  // const [dailyCalories, setDailyCalories] = useState(0);
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!height) newErrors.height = 'Height is required';
+    if (!age) newErrors.age = 'Age is required';
+    if (!currentWeight) newErrors.currentWeight = 'Current weight is required';
+    if (!desiredWeight) newErrors.desiredWeight = 'Desired weight is required';
+    if (!bloodType) newErrors.bloodType = 'Blood type is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const calculateDailyCalories = () => {
+    // Implementați logica pentru calculul caloriilor aici
+    // const calories = 2000; // Exemplu: valoare fixă de 2000
+    // setDailyCalories(calories);
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
-    setShowModal(true);
+    if (validateForm()) {
+      calculateDailyCalories();
+      setShowModal(true);
+    }
   };
 
   const closeModal = () => {
     setShowModal(false);
-  };
-
-  const handleStartLosingWeight = () => {
-    if (isAuthenticated) {
-      navigate('/home');
-    } else {
-      navigate('/login');
-    }
-    closeModal(); // Închidem modalul după redirecționare
   };
 
   return (
@@ -36,28 +54,50 @@ const DailyCaloriesForm = () => {
       </h1>
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
-          <input type="text" placeholder="Height *" className={styles.input} />
-          <div className={styles.vectorInput}></div>
+          <input
+            type="text"
+            placeholder="Height *"
+            value={height}
+            onChange={e => setHeight(e.target.value)}
+            className={styles.input}
+          />
+          {errors.height && (
+            <span className={styles.error}>{errors.height}</span>
+          )}
         </div>
         <div className={styles.inputGroup}>
-          <input type="text" placeholder="Age *" className={styles.input} />
-          <div className={styles.vectorInput}></div>
+          <input
+            type="text"
+            placeholder="Age *"
+            value={age}
+            onChange={e => setAge(e.target.value)}
+            className={styles.input}
+          />
+          {errors.age && <span className={styles.error}>{errors.age}</span>}
         </div>
         <div className={styles.inputGroup}>
           <input
             type="text"
             placeholder="Current weight *"
+            value={currentWeight}
+            onChange={e => setCurrentWeight(e.target.value)}
             className={styles.input}
           />
-          <div className={styles.vectorInput}></div>
+          {errors.currentWeight && (
+            <span className={styles.error}>{errors.currentWeight}</span>
+          )}
         </div>
         <div className={styles.inputGroup}>
           <input
             type="text"
             placeholder="Desired weight *"
+            value={desiredWeight}
+            onChange={e => setDesiredWeight(e.target.value)}
             className={styles.input}
           />
-          <div className={styles.vectorInput}></div>
+          {errors.desiredWeight && (
+            <span className={styles.error}>{errors.desiredWeight}</span>
+          )}
         </div>
         <div className={`${styles.inputGroup} ${styles.bloodTypeGroup}`}>
           <h2 className={styles.inputRadio}>Blood type *</h2>
@@ -67,35 +107,68 @@ const DailyCaloriesForm = () => {
                 type="radio"
                 name="bloodType"
                 value="1"
+                checked={bloodType === '1'}
+                onChange={e => setBloodType(e.target.value)}
                 className={styles.radioColor}
               />
               <span className={styles.customRadio}></span> 1
             </label>
             <label>
-              <input type="radio" name="bloodType" value="2" />
+              <input
+                type="radio"
+                name="bloodType"
+                value="2"
+                checked={bloodType === '2'}
+                onChange={e => setBloodType(e.target.value)}
+                className={styles.radioColor}
+              />
               <span className={styles.customRadio}></span> 2
             </label>
             <label>
-              <input type="radio" name="bloodType" value="3" />
+              <input
+                type="radio"
+                name="bloodType"
+                value="3"
+                checked={bloodType === '3'}
+                onChange={e => setBloodType(e.target.value)}
+                className={styles.radioColor}
+              />
               <span className={styles.customRadio}></span> 3
             </label>
             <label>
-              <input type="radio" name="bloodType" value="4" />
+              <input
+                type="radio"
+                name="bloodType"
+                value="4"
+                checked={bloodType === '4'}
+                onChange={e => setBloodType(e.target.value)}
+                className={styles.radioColor}
+              />
               <span className={styles.customRadio}></span> 4
             </label>
           </div>
+          {errors.bloodType && (
+            <span className={styles.error}>{errors.bloodType}</span>
+          )}
         </div>
         <div className={styles.submitButtonContainer}>
-          <button type="submit" className={`${sharedStyles.commonButton}`}>
-            <span className={styles.buttonStart}>Start losing weight</span>
+          <button type="submit" className={styles.submitButton}>
+            Calculate
           </button>
         </div>
       </form>
+
       <Modal show={showModal} onClose={closeModal}>
         <h2>Ready to start losing weight?</h2>
         <button
-          onClick={handleStartLosingWeight}
-          className={`${sharedStyles.commonButton}`}
+          onClick={closeModal}
+          className={`${styles.commonButton} ${styles.buttonClose}`}
+        >
+          Close
+        </button>
+        <button
+          onClick={closeModal}
+          className={`${styles.commonButton} ${styles.buttonStart}`}
         >
           Start Now
         </button>

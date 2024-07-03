@@ -4,29 +4,31 @@ import React, { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const login = () => {
-    setIsAuthenticated(true);
+    setIsLoggedIn(true);
+    // Aici poți implementa logica pentru setarea token-ului sau a altor informații de sesiune
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
+    setIsLoggedIn(false);
+    // Implementează logica pentru deconectare
   };
 
-  const register = async (username, password) => {
-    // Simulează o cerere de înregistrare către backend sau folosește un serviciu extern
-    // Aici poți adăuga logica pentru a trimite datele către server sau a le stoca local
-
-    // Simulează o înregistrare reușită
-    setIsAuthenticated(true);
+  const register = userData => {
+    // Implementează logica pentru înregistrare utilizator
+    // Poți folosi API-urile necesare pentru a trimite datele către server și a gestiona înregistrarea
+    console.log('Registering user:', userData);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, register }}>
+    <AuthContext.Provider value={{ isLoggedIn, login, logout, register }}>
       {children}
     </AuthContext.Provider>
   );

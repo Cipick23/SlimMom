@@ -1,0 +1,51 @@
+/* dailyCalorieIntake.module.css */
+
+.container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+}
+
+.title {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemName {
+  font-weight: bold;
+}
+
+.calories {
+  color: #007bff;
+}
+
+.total {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+.summary {
+  margin-top: 20px;
+  font-size: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

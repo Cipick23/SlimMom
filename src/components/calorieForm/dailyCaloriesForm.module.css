@@ -46,7 +46,7 @@
 }
 
 .vectorInput {
-  display: none; /* Placeholder for vector input styles */
+  background-image: url(./../../../public/images/VectorInput.png);
 }
 
 .bloodTypeGroup {

@@ -1,0 +1,9 @@
+.vectorShadow {
+  background-image: url(./../../../public/images/VectorShadow.png);
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}

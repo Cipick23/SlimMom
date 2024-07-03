@@ -3,17 +3,23 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App.jsx';
 import './index.css';
-// import { store } from './redux/store';
-// import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './redux/store.js';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-// import Registration from 'pages/registrationPage/registration';
+import { Provider } from '../node_modules/react-redux/dist/react-redux.js';
+import connectToDb from './../utils/connectToDb.js';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+connectToDb();
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </Router>
+    </Provider>
   </React.StrictMode>
 );

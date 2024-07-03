@@ -51,7 +51,7 @@
 }
 
 .vector8 {
-  background: url(./../../images/Vector8.png) no-repeat center center;
+  background: url(./../../../public/images/Vector8.png) no-repeat center center;
   background-size: cover;
   width: 320px;
   display: flex;
@@ -60,7 +60,7 @@
 }
 
 .vector {
-  background: url(./../../images/Vector1.png) no-repeat center center;
+  background: url(./../../../public/images/Vector1.png) no-repeat center center;
   background-size: cover;
   display: none;
 }
