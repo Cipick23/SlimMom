@@ -1,7 +1,6 @@
 // src/middleware/authMiddleware.js
 import jwt from 'jsonwebtoken';
 import passport from 'passport';
-// import User from './../models/user.js';
 
 const secretForToken = process.env.JWT_SECRET;
 

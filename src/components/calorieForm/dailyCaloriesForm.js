@@ -1,9 +1,6 @@
 // DailyCaloriesForm.js
 import React, { useState } from 'react';
 import Modal from '../modal/modal.js';
-// import { useNavigate } from 'react-router-dom';
-// import sharedStyles from './../../utils/shared.module.css';
-// import { useAuth } from 'router/authContext';
 import styles from './dailyCaloriesForm.module.css';
 
 const DailyCaloriesForm = () => {

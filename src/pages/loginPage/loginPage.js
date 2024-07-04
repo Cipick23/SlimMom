@@ -1,12 +1,9 @@
 // Login.js
 import React from 'react';
-import { useAuth } from '../../router/authContext.js';
 import { useNavigate } from 'react-router-dom';
-// import sharedStyles from '../../utils/shared.module.css';
 import Login from './../../router/api/login.js';
 
 const LoginPage = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleLoginSuccess = () => {

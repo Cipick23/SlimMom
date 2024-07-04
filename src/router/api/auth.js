@@ -1,9 +1,7 @@
 // src/api/auth.js
 import express from 'express';
-// import jwt from 'jsonwebtoken';
 import User from '../../models/user.js';
 import AuthController from './../../controller/authController.js';
-// import { validateAuth } from '../../middleware/authMiddleware.js';
 import { STATUS_CODES } from './../../utils/constants.js';
 
 const router = express.Router();

@@ -2,9 +2,7 @@ import express, { json } from 'express';
 import cors from 'cors';
 import 'dotenv/config';
 import connectToDb from './src/utils/connectToDb.js';
-import 'dotenv/config';
 import logger from 'morgan';
-// import contactsRouter from "./routes/api/contacts.js";
 import authRouter from './src/router/api/auth.js';
 import { STATUS_CODES } from './src/utils/constants.js';
 

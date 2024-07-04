@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../router/authContext.js';
-// import sharedStyles from '../../utils/shared.module.css';
+// import { useAuth } from '../../router/authContext.js';
 import Registration from './../../router/api/register.js';
 
 const RegistrationPage = () => {
-  const { register } = useAuth();
+  // const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleRegisterSuccess = () => {

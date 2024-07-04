@@ -1,8 +1,8 @@
 // mainPage.js
 
 import React from 'react';
-import DailyCaloriesForm from '../../components/dailyCaloriesForm/dailyCaloriesForm';
 import styles from './mainPage.module.css';
+import DailyCaloriesForm from './../../components/calorieForm/dailyCaloriesForm.js';
 
 const MainPage = () => {
   return (

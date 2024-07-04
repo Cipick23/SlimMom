@@ -1,5 +1,4 @@
 // DiaryAddProductForm.js
-
 import React, { useState } from 'react';
 import styles from './diaryAddProductForm.module.css';
 

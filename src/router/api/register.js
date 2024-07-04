@@ -1,10 +1,10 @@
 // src/components/Register.js
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { register } from '../api/auth.js'; // Importăm funcția de înregistrare din API
+import { useNavigate } from 'react-router-dom';
+import AuthController from './../../controller/authController.js'; // Importăm funcția de înregistrare din API
 
 const Register = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,10 +14,10 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await register(name, email, password);
+      const response = await AuthController.signup(name, email, password);
 
       if (response.message === 'User created successfully') {
-        history.push('/login'); // Redirecționăm către pagina de login
+        navigate('/login'); // Redirecționăm către pagina de login
       }
     } catch (error) {
       setError(error.message);
