@@ -2,13 +2,13 @@
 import React from 'react';
 import styles from './modal.module.css';
 import { useEffect } from 'react';
-import { useAuth } from './../../router/authContext.js';
-import { useNavigate } from 'react-router-dom';
-import sharedStyles from './../../utils/shared.module.css';
+// import { useAuth } from './../../index.js';
+// import { Navigate } from '../../../node_modules/react-router-dom/dist/index';
+// import { useNavigate } from 'react-router-dom';
 
 const Modal = ({ show, onClose }) => {
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
+  // const { isAuthenticated } = useAuth();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     const handleOutsideClick = e => {
@@ -30,9 +30,9 @@ const Modal = ({ show, onClose }) => {
 
   const handleStartLosingWeight = () => {
     onClose(); // Închidem modalul
-    if (!isAuthenticated) {
-      navigate('/login'); // Redirecționăm către pagina de login doar dacă nu este autentificat
-    }
+    // if (!isAuthenticated) {
+    //   Navigate('/login'); // Redirecționăm către pagina de login doar dacă nu este autentificat
+    // }
   };
 
   if (!show) {
@@ -55,7 +55,7 @@ const Modal = ({ show, onClose }) => {
           <div className={styles.submitButtonContainer}>
             <button
               type="button"
-              className={`${sharedStyles.commonButton} ${styles.submitButton}`}
+              className={`${styles.commonButton} ${styles.submitButton}`}
               onClick={handleStartLosingWeight}
             >
               <span className={styles.buttonStart}>Start losing weight</span>

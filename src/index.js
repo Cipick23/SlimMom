@@ -6,9 +6,6 @@ import './index.css';
 import store from './redux/store.js';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import connectToDb from './utils/connectToDb.js';
-
-connectToDb();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

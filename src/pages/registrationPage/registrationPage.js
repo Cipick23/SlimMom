@@ -1,23 +1,58 @@
 // RegistrationPage.js
 
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { useAuth } from '../../router/authContext.js';
-import Registration from './../../router/api/register.js';
 
 const RegistrationPage = () => {
-  // const { register } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [error, setError] = useState('');
 
-  const handleRegisterSuccess = () => {
-    navigate('/'); // Redirecționează către pagina principală după înregistrare
+  const handleRegister = async e => {
+    e.preventDefault();
+
+    // try {
+    //   const response = await AuthController.signup(name, email, password);
+
+    //   if (response.message === 'User created successfully') {
+    //     navigate('/login'); // Redirecționăm către pagina de login
+    //   }
+    // } catch (error) {
+    //   setError(error.message);
+    // }
   };
 
   return (
     <div>
-      <h2>Registration Page</h2>
-      <Registration onRegisterSuccess={handleRegisterSuccess} />{' '}
-      {/* Transmiti callback pentru gestionarea înregistrării cu succes */}
+      <h2>Register</h2>
+      {/* {error && <p>{error}</p>} */}
+      <form onSubmit={handleRegister}>
+        <input
+          type="text"
+          placeholder="Name"
+          // value={name}
+          // onChange={e => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          // value={email}
+          // onChange={e => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          // value={password}
+          // onChange={e => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
 };
