@@ -1,57 +1,71 @@
 // RegistrationPage.js
-
-import React from 'react';
-// import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import { useAuth } from '../../router/authContext.js';
+import axios from 'axios';
 
 const RegistrationPage = () => {
-  // const navigate = useNavigate();
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [error, setError] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  const navigate = useNavigate();
 
   const handleRegister = async e => {
     e.preventDefault();
 
-    // try {
-    //   const response = await AuthController.signup(name, email, password);
+    try {
+      const response = await axios.post(
+        'http://localhost:3000/api/users/signup',
+        {
+          email,
+          password,
+        }
+      );
 
-    //   if (response.message === 'User created successfully') {
-    //     navigate('/login'); // Redirecționăm către pagina de login
-    //   }
-    // } catch (error) {
-    //   setError(error.message);
-    // }
+      if (response.status === 201) {
+        setSuccess('User registered successfully');
+        setError('');
+        // Redirecționează utilizatorul către pagina de login
+        setTimeout(() => navigate('/login'), 2000); // Redirecționează după 2 secunde
+      }
+    } catch (error) {
+      setSuccess('');
+      setError(error.response?.data?.message || 'An error occurred');
+    }
   };
 
   return (
     <div>
       <h2>Register</h2>
-      {/* {error && <p>{error}</p>} */}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {success && <p style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleRegister}>
         <input
           type="text"
           placeholder="Name"
-          // value={name}
-          // onChange={e => setName(e.target.value)}
+          value={name}
+          onChange={e => setName(e.target.value)}
           required
         />
         <input
           type="email"
           placeholder="Email"
-          // value={email}
-          // onChange={e => setEmail(e.target.value)}
+          value={email}
+          onChange={e => setEmail(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Password"
-          // value={password}
-          // onChange={e => setPassword(e.target.value)}
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           required
         />
         <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
