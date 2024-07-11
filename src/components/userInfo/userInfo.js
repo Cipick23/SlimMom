@@ -5,24 +5,28 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const UserInfo = ({ userName, onLogout }) => {
+  console.log('UserInfo - userName:', userName);
   const handleLogout = async () => {
     try {
       const token = localStorage.getItem('token');
+      console.log('token:', token); // Asigură-te că token-ul este corect
+
       if (!token) {
         throw new Error('Token not found');
       }
 
+      // db
+      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InBhc3N3b3JkIjoiJDJiJDEwJGNUZ2diaWYzSDNSLnhTcEk5T3U4Vi5hYmlRMUJGSmVrYmRFVm0uR1ZGYnRkbHBmYjNkYTlxIiwiZW1haWwiOiJ0enV0enV0aGVraWRAZ21haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInRva2VuIjpudWxsLCJhdmF0YXJVUkwiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzE3NGViYTExOWI5OGE1MzljOTBjNWVhNzgxZGViMDU0IiwidmVyaWZ5IjpmYWxzZSwidmVyaWZpY2F0aW9uVG9rZW4iOiJjNzNmZWNkMi1lZmZhLTQwNzMtYjAwZC1hZTBiNWI4N2YwY2MiLCJfaWQiOiI2NjhmZmFjYjA0MGZmYjQ3NTEwZGMwNmIiLCJfX3YiOjB9LCJpYXQiOjE3MjA3MTE4ODMsImV4cCI6MTcyMDcxNTQ4M30.VFXCI1szcAcvO6C2BMQFJPtHQVTpKAT_gegLZolbseQ
+
+      // login page
+      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InBhc3N3b3JkIjoiJDJiJDEwJGNUZ2diaWYzSDNSLnhTcEk5T3U4Vi5hYmlRMUJGSmVrYmRFVm0uR1ZGYnRkbHBmYjNkYTlxIiwiZW1haWwiOiJ0enV0enV0aGVraWRAZ21haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInRva2VuIjpudWxsLCJhdmF0YXJVUkwiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzE3NGViYTExOWI5OGE1MzljOTBjNWVhNzgxZGViMDU0IiwidmVyaWZ5IjpmYWxzZSwidmVyaWZpY2F0aW9uVG9rZW4iOiJjNzNmZWNkMi1lZmZhLTQwNzMtYjAwZC1hZTBiNWI4N2YwY2MiLCJfaWQiOiI2NjhmZmFjYjA0MGZmYjQ3NTEwZGMwNmIiLCJfX3YiOjB9LCJpYXQiOjE3MjA3MTE4ODMsImV4cCI6MTcyMDcxNTQ4M30.VFXCI1szcAcvO6C2BMQFJPtHQVTpKAT_gegLZolbseQ
+      // local storage token
+      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InBhc3N3b3JkIjoiJDJiJDEwJGNUZ2diaWYzSDNSLnhTcEk5T3U4Vi5hYmlRMUJGSmVrYmRFVm0uR1ZGYnRkbHBmYjNkYTlxIiwiZW1haWwiOiJ0enV0enV0aGVraWRAZ21haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInRva2VuIjpudWxsLCJhdmF0YXJVUkwiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzE3NGViYTExOWI5OGE1MzljOTBjNWVhNzgxZGViMDU0IiwidmVyaWZ5IjpmYWxzZSwidmVyaWZpY2F0aW9uVG9rZW4iOiJjNzNmZWNkMi1lZmZhLTQwNzMtYjAwZC1hZTBiNWI4N2YwY2MiLCJfaWQiOiI2NjhmZmFjYjA0MGZmYjQ3NTEwZGMwNmIiLCJfX3YiOjB9LCJpYXQiOjE3MjA3MTE4ODMsImV4cCI6MTcyMDcxNTQ4M30.VFXCI1szcAcvO6C2BMQFJPtHQVTpKAT_gegLZolbseQ
       const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
 
-      // Debugging token
-      console.log('Token:', token);
-      // console
-      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY2OGY3Y2ExNDVjYjdkNzE5YjRhYTBkMiIsInBhc3N3b3JkIjoiJDJiJDEwJEtFVGtEbjVTNG5KQ3phWjJEeFJ4anUxL0ZBSjBVTlViQnU4OUh3L0VMT05Ya1ZVQnNNUmhXIiwiZW1haWwiOiJ0enV0enV0aGVraWRAZ21haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInRva2VuIjpudWxsLCJhdmF0YXJVUkwiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzE3NGViYTExOWI5OGE1MzljOTBjNWVhNzgxZGViMDU0IiwidmVyaWZ5Ijp0cnVlLCJ2ZXJpZmljYXRpb25Ub2tlbiI6IjU1NGJmNmYyLWZkYWQtNDlhNC1hOWFhLWNmMzc0ZjJhZmUyYSIsIl9fdiI6MH0sImlhdCI6MTcyMDY4MDA1OSwiZXhwIjoxNzIwNjgzNjU5fQ.EdQg8Kg-T7xnJHPFofe3gCgNVuFTG8PLeOdeIa9famY
-
-      // bd
-      // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjY2OGY3ZmE4NDVjYjdkNzE5YjRhYTBmNyIsInBhc3N3b3JkIjoiJDJiJDEwJEJmdGVuODVGOUlFQldETWN6TGVmdmVaY3hUbWcudjg3OWZzT1F3Uk5wS1lqUGNXQzlCeUFtIiwiZW1haWwiOiJ0enV0enV0aGVraWRAZ21haWwuY29tIiwic3Vic2NyaXB0aW9uIjoic3RhcnRlciIsInRva2VuIjpudWxsLCJhdmF0YXJVUkwiOiIvL3d3dy5ncmF2YXRhci5jb20vYXZhdGFyLzE3NGViYTExOWI5OGE1MzljOTBjNWVhNzgxZGViMDU0IiwidmVyaWZ5Ijp0cnVlLCJ2ZXJpZmljYXRpb25Ub2tlbiI6ImNjZTA1MWYzLTEyZjEtNGI3Zi04NmE2LTA0MTRhOTY3ZTAzMiIsIl9fdiI6MH0sImlhdCI6MTcyMDY4MDM5MiwiZXhwIjoxNzIwNjgzOTkyfQ.pWKSoWDMDgCzaHplo-6xCy5nNee98Q-9N8sLWSKpEHM
+      console.log('token:', token);
 
       const response = await axios.get(
         'http://localhost:3001/api/users/logout',

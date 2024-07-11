@@ -16,7 +16,11 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    console.log('token:', token); // Asigură-te că token-ul este corect
+
     const storedUserName = localStorage.getItem('userName');
+    console.log('Stored userName:', storedUserName);
+
     if (token && storedUserName) {
       setIsAuthenticated(true);
       setUserName(storedUserName);
@@ -26,6 +30,7 @@ const App = () => {
   const handleLogin = userName => {
     setIsAuthenticated(true);
     setUserName(userName);
+    localStorage.setItem('userName', userName);
   };
 
   const handleLogout = () => {

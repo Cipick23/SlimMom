@@ -7,6 +7,9 @@ import UserInfo from './../userInfo/userInfo.js';
 import Logo from './../logo/logo.js';
 
 const Header = ({ isAuthenticated, userName, onLogout }) => {
+  console.log('Header - isAuthenticated:', isAuthenticated);
+  console.log('Header - userName:', userName);
+
   return (
     <header className={styles.header}>
       {isAuthenticated ? (
