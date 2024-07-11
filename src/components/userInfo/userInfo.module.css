@@ -2,12 +2,64 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 1rem;
 }
 
 .userName {
+  margin-right: 8px;
+  font-weight: bold;
+  color: #9b9faa;
+  border-radius: 4px;
   font-family: var(--font-family);
   font-weight: 700;
   font-size: 14px;
-  color: #212121;
+  letter-spacing: 0.04em;
+}
+
+.successMessage {
+  color: green;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.exitButton {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: #9b9faa;
+  border-radius: 4px;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+.vector {
+  background-image: url(./../../../public/images/Vector1.png);
+  margin-right: 8px;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .userInfo {
+    justify-content: flex-end;
+    margin-right: 24px;
+  }
+
+  .exitButton {
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .userInfo {
+    margin-right: 32px;
+  }
+
+  .exitButton {
+    padding: 12px 24px;
+  }
 }

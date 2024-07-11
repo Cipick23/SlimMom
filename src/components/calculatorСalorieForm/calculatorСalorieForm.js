@@ -1,6 +1,6 @@
 // calculatorСalorieForm.js
 import React, { useState } from 'react';
-import styles from './calculatorCalorieForm.module.css';
+import styles from './calculatorСalorieForm.module.css';
 
 const CalculatorCalorieForm = () => {
   const [height, setHeight] = useState('');

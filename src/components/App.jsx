@@ -1,24 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './App.css';
-import Navigation from './../components/header/navigation.js';
-import CalorieForm from './calorieForm/dailyCaloriesForm.js';
 import { Route, Routes } from 'react-router-dom';
-import DailyCaloriesForm from './calorieForm/dailyCaloriesForm.js';
 import DiaryPage from './../pages/diaryPage/diaryPage.js';
 import RegistrationPage from './../pages/registrationPage/registrationPage.js';
 import LoginPage from './../pages/loginPage/loginPage.js';
+import MainPage from 'pages/mainPage/mainPage';
+import { useNavigate } from 'react-router-dom';
+import Header from './header/header.js';
+import CalculatorPage from './../pages/calculatorPage/calculatorPage.js';
 
 const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userName, setUserName] = useState('');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUserName = localStorage.getItem('userName');
+    if (token && storedUserName) {
+      setIsAuthenticated(true);
+      setUserName(storedUserName);
+    }
+  }, []);
+
+  const handleLogin = userName => {
+    setIsAuthenticated(true);
+    setUserName(userName);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUserName('');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+    navigate('/login');
+  };
+
   return (
     <div className={styles.appContainer}>
-      <Navigation />
+      <Header
+        isAuthenticated={isAuthenticated}
+        userName={userName}
+        onLogout={handleLogout}
+      />
       <div className={styles.layout}>
         <Routes>
-          <Route path="/" element={<DailyCaloriesForm />} />{' '}
-          <Route path="/diary" element={<DiaryPage />} />
-          <Route path="/home" element={<CalorieForm />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/registration" element={<RegistrationPage />} />
+          <Route
+            path="/calculator"
+            element={<CalculatorPage isAuthenticated={isAuthenticated} />}
+          />
+          <Route
+            path="/diary"
+            element={<DiaryPage isAuthenticated={isAuthenticated} />}
+          />
         </Routes>
       </div>
     </div>

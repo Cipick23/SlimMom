@@ -1,8 +1,7 @@
-// RegistrationPage.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { useAuth } from '../../router/authContext.js';
 import axios from 'axios';
+import styles from './registration.module.css'; // Importă stilurile CSS
 
 const RegistrationPage = () => {
   const [name, setName] = useState('');
@@ -18,14 +17,18 @@ const RegistrationPage = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:3000/api/users/signup',
+        'http://localhost:3001/api/users/signup',
         {
+          name,
           email,
           password,
         }
       );
 
       if (response.status === 201) {
+        const token = response.data.data.token;
+        localStorage.setItem('token', token); // Stocăm token-ul în localStorage
+        localStorage.setItem('userName', name);
         setSuccess('User registered successfully');
         setError('');
         // Redirecționează utilizatorul către pagina de login
@@ -37,17 +40,22 @@ const RegistrationPage = () => {
     }
   };
 
+  const goToLogin = () => {
+    navigate('/login');
+  };
+
   return (
-    <div>
-      <h2>Register</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>{success}</p>}
+    <div className={styles.formContainer}>
+      <h2 className={styles.registerName}>Register</h2>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      {success && <p className={styles.successMessage}>{success}</p>}
       <form onSubmit={handleRegister}>
         <input
           type="text"
           placeholder="Name"
           value={name}
           onChange={e => setName(e.target.value)}
+          className={styles.inputField}
           required
         />
         <input
@@ -55,6 +63,7 @@ const RegistrationPage = () => {
           placeholder="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          className={styles.inputField}
           required
         />
         <input
@@ -62,10 +71,17 @@ const RegistrationPage = () => {
           placeholder="Password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          className={styles.inputField}
           required
         />
-        <button type="submit">Register</button>
-        <button type="submit">Login</button>
+        <div className={styles.buttonContainer}>
+          <button type="submit" className={styles.submitButton}>
+            Register
+          </button>
+          <button onClick={goToLogin} className={styles.loginButton}>
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );

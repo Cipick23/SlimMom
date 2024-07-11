@@ -1,0 +1,22 @@
+.logo {
+  background: url('./../../../public/images/logoSlimMom.webp') no-repeat center
+    center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 46px;
+  height: 44px;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 150px;
+    height: 60px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo {
+    width: 200px;
+    height: 80px;
+  }
+}

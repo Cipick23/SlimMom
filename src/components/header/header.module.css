@@ -1,0 +1,50 @@
+/* header.module.css */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 16px;
+}
+
+.topContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userInfoContainer {
+  display: flex;
+  align-items: center;
+}
+
+.mobileVector {
+  background-image: url(./../../../public/images/Vector8.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 40px; /* Ajustează dimensiunea vectorului conform necesităților */
+  width: 100%;
+  margin-top: 8px; /* Ajustează distanța de sus */
+}
+
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    padding: 24px;
+  }
+
+  .userInfoContainer {
+    margin-right: 24px; /* Distanța între UserInfo și BurgerMenu */
+  }
+
+  .mobileVector {
+    display: none; /* Ascunde vectorul pe desktop */
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding: 32px;
+  }
+}
